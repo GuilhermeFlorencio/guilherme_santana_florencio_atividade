@@ -21,7 +21,6 @@ function teste() {
     document.getElementById('restulIdade').innerHTML = idade;
     document.getElementById('restulSexo').innerHTML = sexo;
     document.getElementById('restulData').innerHTML = data;
-    document.getElementById('resultArea').innerHTML = area;
 }
 
 $(document).on("input keyup", "#exampleFormControlTextarea1", function () {
