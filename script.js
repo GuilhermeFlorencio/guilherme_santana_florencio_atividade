@@ -35,26 +35,40 @@ function teste() {
 }
 
 //Validar Idade
-function validarIdade(campoIdade){
+function validarIdade(){
     var idadeInformada = parseInt(document.getElementById("floatingInput2").value);
     var idadeDefault = 1;
-    var resultado = '';
     
     if(idadeInformada) {
       if(idadeInformada === idadeDefault) {
         return true;
-      } else if(idadeInformada > idadeDefault){
+      } else if(idadeInformada > idadeDefault){ 
         return true;
-      } else {
-        document.getElementById("floatingInput2").values ="";
-        alert("Adicione uma idade valida");
-        document.form-content.floatingInput2.focus();
-
-          return false;
+      } else {        
+        alert("Por favor, adicione uma idade válida!"); //Alerta para informar que a idade é inválida
+        document.getElementById('floatingInput2').value=''; //Limpa campo idade
+        return false;
       }
     }    
 }
 
-function validarData(campoData){
-  console.log(campoData);
+
+//Bloquear digitação no campo data
+$('[type="date"]').on("keydown", function() {
+  event.preventDefault();
+  return false;
+});
+
+$('input').on("input", function(e) {
+  $(this).val($(this).val().replace(/,/g, ""));
+});
+
+//Bloquear caracteres especiais no TEXTAREA
+
+function maskCharacters() {
+  
+  var regex = new RegExp('[^ 0-9a-zA-Zàèìòùáéíóúâêîôûãõ\b@,.]', 'g');            
+$(this).val($(this).val().replace(regex, ''));
 }
+
+$('textarea').keyup(maskCharacters);
